@@ -23,8 +23,8 @@ const IndexPage = () => {
         setPoints(points + 1);
         e.target.value = "";
         switch (points) {
-          case GameLevel.MID: setLevel(GameLevel.MID); break;
-          case GameLevel.HIGH: setLevel(GameLevel.HIGH); break;
+          case 50: setLevel(GameLevel.MID); break;
+          case 100: setLevel(GameLevel.HIGH); break;
         }
       } else {
         if (points < 50) setPoints(points - 1)
