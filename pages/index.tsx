@@ -41,27 +41,30 @@ const IndexPage = () => {
     }
   };
 
+  const lastLevel = () => {
+    if (level == GameLevel.VERY_HIGH) {
+      setAttempt(attempt + 1)
+      if (input?.current?.value) input.current.value = "";
+      if (input?.current?.value != result) {
+        if (points < 50) setPoints(points - 1)
+        if (points > 50 && points < 100) setPoints(points - 2)
+        if (points > 100) setPoints(points - 5)
+        setIncorrect(incorrect + 1)
+        setState(generateLvl);
+      } else {
+        setState(generateLvl);
+        setPoints(points + 1);
+        switch (points) {
+          case 50: setLevel(GameLevel.MID); break;
+          case 100: setLevel(GameLevel.HIGH); break;
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (level == GameLevel.VERY_HIGH) {
-        setAttempt(attempt + 1)
-        if (input?.current?.value) input.current.value = "";
-        if (input?.current?.value != result) {
-          if (points < 50) setPoints(points - 1)
-          if (points > 50 && points < 100) setPoints(points - 2)
-          if (points > 100) setPoints(points - 5)
-          setIncorrect(incorrect + 1)
-          setState(generateLvl);
-        } else {
-          setState(generateLvl);
-          setPoints(points + 1);
-          switch (points) {
-            case 50: setLevel(GameLevel.MID); break;
-            case 100: setLevel(GameLevel.HIGH); break;
-          }
-        }
-
-      }
+      lastLevel();
     }, 10000);
 
     return () => clearTimeout(timer);
