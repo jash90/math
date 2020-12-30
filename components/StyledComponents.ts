@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Form = styled.div`
 display:flex;
-flex-direction:row;
-margin: 0px 20px;
+flex-direction:${(props:any) => props.column ? "column" : "row"};
+margin: 0px ${(props:any) => props.noPadding ? "0px" : "10px"};
 `
 
 export const Text = styled.span`

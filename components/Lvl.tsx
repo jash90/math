@@ -6,7 +6,7 @@ type Props = {
 }
 
 const Lvl = ({ level = 1 }: Props) => (
-    <Form>
+    <Form noPadding>
         <Text>{"Poziom:"}</Text>
         {[...Array(level).keys()].map((lvl: any) => {
             return (<Text key={String(lvl)}>{"♥"}</Text>);

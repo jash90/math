@@ -18,6 +18,11 @@ export const generate = (level: GameLevel): Multiply => {
             const factor2: number = Math.floor(Number((Math.random() * 5 + 5).toPrecision(1)));
             return { factor1, factor2, result: factor1 * factor2 };
         }
+        case GameLevel.VERY_HIGH: {
+            const factor1: number = Math.floor(Number((Math.random() * 5 + 5).toPrecision(1)));
+            const factor2: number = Math.floor(Number((Math.random() * 5 + 5).toPrecision(1)));
+            return { factor1, factor2, result: factor1 * factor2 };
+        }
         default: {
             const factor1: number = Math.floor(Number((Math.random() * 10).toPrecision(1)));
             const factor2: number = Math.floor(Number((Math.random() * 10).toPrecision(1)));
