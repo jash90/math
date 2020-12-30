@@ -17,7 +17,7 @@ const IndexPage = () => {
   const [state, setState] = useState(generateLvl);
 
   const onKeyPress = (e: any) => {
-    if (e.key === 'Enter' && e.current.value !== "") {
+    if (e.key === 'Enter' && e.target.value !== "") {
       if (e.target.value == state.result) {
         setState(generateLvl);
         setPoints(points + 1);
