@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const Form = styled.div`
+export const Form = styled.div<{ column?: boolean, noPadding?: boolean }>`
 display:flex;
-flex-direction:${(props:any) => props.column ? "column" : "row"};
-margin: 0px ${(props:any) => props.noPadding ? "0px" : "10px"};
+flex-direction:${(props: any) => props.column ? "column" : "row"};
+margin: 0px ${(props: any) => props.noPadding ? "0px" : "10px"};
 `
 
 export const Text = styled.span`
