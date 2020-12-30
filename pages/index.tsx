@@ -13,15 +13,18 @@ const IndexPage = () => {
   const [level, setLevel] = useState(GameLevel.LOW);
   const [attempt, setAttempt] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
+  const [lastWrongAnswer, setLastWrongAnswer] = useState("");
 
   const generateLvl = useCallback(() => generate(level), [level]);
 
   const [state, setState] = useState(generateLvl);
 
+  const { factor1, factor2, result } = state;
+
   const onKeyPress = (e: any) => {
     if (e.key === 'Enter' && e.target.value !== "") {
       setAttempt(attempt + 1)
-      if (e.target.value == state.result) {
+      if (e.target.value == result) {
         setState(generateLvl);
         setPoints(points + 1);
         e.target.value = "";
@@ -30,6 +33,7 @@ const IndexPage = () => {
         if (points > 50 && points < 100) setPoints(points - 2)
         if (points > 100) setPoints(points - 5)
         setIncorrect(incorrect + 1)
+        setLastWrongAnswer(`${factor1} ∙ ${factor2}`);
       }
       if (points > 50 && points < 100) setLevel(GameLevel.MID);
       if (points > 100 && points < 150) setLevel(GameLevel.HIGH);
@@ -42,7 +46,7 @@ const IndexPage = () => {
       if (level == GameLevel.VERY_HIGH) {
         setAttempt(attempt + 1)
         if (input?.current?.value) input.current.value = "";
-        if (input?.current?.value != state.result) {
+        if (input?.current?.value != result) {
           if (points < 50) setPoints(points - 1)
           if (points > 50 && points < 100) setPoints(points - 2)
           if (points > 100) setPoints(points - 5)
@@ -66,21 +70,19 @@ const IndexPage = () => {
   const Level = useMemo(() => (<Lvl level={level} />), [level])
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example" >
+    <Layout title="Math multiply" >
       <h1>Siema uczniu</h1>
       <Form>
-        <Text>{state.factor1}</Text>
-        <Text>{"∙"}</Text>
-        <Text>{state.factor2}</Text>
-        <Text>{"="}</Text>
+        <Text>{`${factor1} ∙ ${factor2} = `}</Text>
         <Result ref={input} onKeyPress={onKeyPress} />
       </Form>
       <Form column>
-        <Text>{"Punkty : " + points}</Text>
-        <Text>{"Prawidłowe : " + (attempt - incorrect)}</Text>
-        <Text>{"Nieprawidłowe : " + incorrect}</Text>
-        <Text>{"Próby : " + attempt}</Text>
+        <Text>{`Punkty : ${points}`}</Text>
+        <Text>{`Prawidłowe : ${(attempt - incorrect)}`}</Text>
+        <Text>{`Nieprawidłowe : ${incorrect}`}</Text>
+        <Text>{`Próby : ${attempt}`}</Text>
         {Level}
+        <Text>{`Ostatnio błąd popełniłeś przy ${lastWrongAnswer}`}</Text>
       </Form>
 
     </Layout>
