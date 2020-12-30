@@ -10,7 +10,7 @@ import { GameLevel } from '../interfaces/enum';
 const IndexPage = () => {
   const input: any = useRef();
   const [points, setPoints] = useState(0);
-  const [level, setLevel] = useState(GameLevel.VERY_HIGH);
+  const [level, setLevel] = useState(GameLevel.LOW);
   const [attempt, setAttempt] = useState(0);
   const [incorrect, setIncorrect] = useState(0);
 
