@@ -35,9 +35,9 @@ const IndexPage = () => {
         setIncorrect(incorrect + 1)
         setLastWrongAnswer(`${factor1} ∙ ${factor2}`);
       }
-      if (points > 50 && points < 100) setLevel(GameLevel.MID);
-      if (points > 100 && points < 150) setLevel(GameLevel.HIGH);
-      if (points > 150) setLevel(GameLevel.HIGH);
+      if (points > 49 && points < 99) setLevel(GameLevel.MID);
+      if (points > 99 && points < 149) setLevel(GameLevel.HIGH);
+      if (points > 149) setLevel(GameLevel.VERY_HIGH);
     }
   };
 
